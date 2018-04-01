@@ -4,8 +4,8 @@ import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.dataformat.JsonLibrary;
 
+import com.transferencia.dao.ContasDAO;
 import com.transferencia.dataObjects.Operacao;
-import com.transferencias.dao.ContasDAO;
 
 public class CreditoEmConta extends RouteBuilder {
 

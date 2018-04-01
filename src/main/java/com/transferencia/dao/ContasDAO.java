@@ -1,4 +1,4 @@
-package com.transferencias.dao;
+package com.transferencia.dao;
 
 import java.io.File;
 import java.io.FileInputStream;

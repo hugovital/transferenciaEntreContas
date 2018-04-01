@@ -8,8 +8,8 @@ import org.apache.camel.component.hawtdb.HawtDBAggregationRepository;
 import org.apache.camel.model.dataformat.JsonLibrary;
 
 import com.transferencia.dataObjects.Transacao;
-import com.transferencias.strategy.AgregacaoDaCompensacaoStrategy;
-import com.transferencias.strategy.DescartarRetornoStrategy;
+import com.transferencia.strategy.AgregacaoDaCompensacaoStrategy;
+import com.transferencia.strategy.DescartarRetornoStrategy;
 
 public class TransferenciaEntreContrasOrquestrador extends RouteBuilder {
 
