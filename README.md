@@ -46,11 +46,11 @@ Para casos de desfazimento, é importante considerarmos sempre 3 pontos nas rota
 
 1) Serviços unitários idempotentes: Idempotente significa que você pode chamar um serviço várias vezes, o retorno será sempre o mesmo. Em termos práticos, o serviço 'testa' se a transação ou seu desfazimento já foram efetuados. Caso não tenham sido, roda o serviço. Caso algo exista, não faz nada. Um serviço de crédito em conta, por exemplo:
 
+```
 //importante testar se a compensação foi feita antes da transação principal, para cenário complexos de timeouts e enfileiramentos grandes
 if ( banco nao contem desfazimento de idTransacao )
 
-	if ( banco contem idTransacao )
-	
+	if ( banco contem idTransacao )	
 		não faz nada;
 		
 	else {
@@ -58,15 +58,19 @@ if ( banco nao contem desfazimento de idTransacao )
 		grava idTransacao no banco;
 		credita valor no banco;
 	}
+```
 
 Um serviço de desfazimento de crédito:
 
-if ( banco não contem desfazimento de idTransacao )
+```
+if ( banco não contem desfazimento de idTransacao ){
 	if ( banco contem idTransacao não estornado) {
 		estorna valor na conta;
 		marca idTransacao como estornado
 	} else
 		não faz nada;
+}
+```
 
 É possível ver acima que podemos chamar ambos os serviços várias vezes, e que cada operação só será executada uma vez. Isso é imprescindível para garantir o estado das transações.
 
