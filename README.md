@@ -77,6 +77,7 @@ if ( banco não contem desfazimento de idTransacao ){
 
 2) Serviço orquestrador: Aqui temos um serviço 'mestre' que irá chamar os serviços untários, e em havendo erro, chamará os desfazimentos. No camel, é a rota orquestrador principal. Este deve também gerar um ID que será passado para os serviços, para que estes consigam se organizar internamente:
 
+```
 	fazer:	
 		gerarIdTransacao();
 		chamaServicoDebitoEmConta( idTransacao );
@@ -84,6 +85,7 @@ if ( banco não contem desfazimento de idTransacao ){
 	emCasoDeErro (erro de negócio, erro técnico, timeout):
 		chamaServicoDesfazDebitoEmConta( idTransacao  );
 		chamaServicoDesfazCreditoEmConta( idTransacao );
+```		
 
 
 3) Mecanismo 'background': Um mecanismo capaz de monitorar, em background, quais transações foram concluídas, quais deram erros, quais caíram (máquina caiu) e precisam ser retomadas. No camel, esse mecanismo se faz através do "aggregate", configurado com repositório (banco de dados) para compensações.
